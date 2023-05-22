@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import Weather from './components/Weather';
-import Loading from './components/Loading';
+
 
 export default function Home() {
   const [city, setCity] = useState('');
