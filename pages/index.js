@@ -12,7 +12,8 @@ export default function Home() {
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState({});
 
-  const url= `http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+  const url= `http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+
 
   const getWeather = (e) => {
     e.preventDefault()
