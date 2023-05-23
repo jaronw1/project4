@@ -42,6 +42,7 @@ export default function Home() {
       <Image
         src='https://images.unsplash.com/photo-1569511735406-407c5884625c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80'
         fill
+        className='object-cover'
         alt='weatherbackground'
       />
 
@@ -49,17 +50,19 @@ export default function Home() {
       <div className='relative flex justify-between items-center max-w-[500px] w-full m-auto pt-4 px-4 text-white z-10'>
         <form
           onSubmit={getWeather}
-
+          className='flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 text-white rounded-2xl'
         >
           <div>
             <input
               onChange={(e) => setCity(e.target.value)}
+              className='bg-transparent border-none text-white focus:outline-none text-2xl'
               type='text'
               placeholder='Search city'
               value={city}
             />
           </div>
           <button type='submit'>
+            <BsSearch size={20} />
           </button>
         </form>
       </div>
