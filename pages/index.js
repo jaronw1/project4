@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import Weather from './components/Weather';
-
+import Loading from './components/Loading';
 
 export default function Home() {
   const [city, setCity] = useState('');
@@ -12,17 +12,57 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const apiKey = process.env.NEXT_PUBLIC_WEATHER_KEY;
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
+  const geolocationUrl = 'http://api.openweathermap.org/geo/1.0/reverse';
+  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather`;
+  
+  useEffect(() => {
+    // Fetch weather data for the current location when the component mounts
+    fetchWeatherByGeolocation();
+  }, []);
 
-  const getWeather = async (e) => {
-    e.preventDefault();
+  const fetchWeatherByGeolocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          getWeatherByCoordinates(latitude, longitude);
+        },
+        (error) => {
+          console.error('Error getting geolocation:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const getWeatherByCoordinates = async (latitude, longitude) => {
     setLoading(true);
 
     try {
-      const response = await axios.get(url);
+      const geolocationResponse = await axios.get(`${geolocationUrl}?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`);
+      const city = geolocationResponse.data[0].name;
+      setCity(city);
+      await fetchWeather(city);
+    } catch (error) {
+      console.error('Error fetching geolocation:', error);
+      setLoading(false);
+    }
+  };
+
+  const getWeather = async (e) => {
+    e.preventDefault();
+    await fetchWeather(city);
+  };
+
+  const fetchWeather = async (city) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.get(`${weatherUrl}?q=${city}&units=imperial&appid=${apiKey}`);
       setWeather(response.data);
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching weather:', error);
     }
 
     setCity('');
