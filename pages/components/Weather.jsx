@@ -2,9 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 
 const Weather = ({ data }) => {
-  console.log(data);
   return (
-    <div className='relative flex flex-col justify-between max-w-[500px] w-full h-[90vh] m-auto p-4 text-gray-300 z-10'>
+    <div className='relative flex flex-col justify-between max-w-[500px] w-full h-[90vh] m-auto p-4 text-white z-10'>
       {/* Top */}
       <div className='relative flex justify-between pt-12'>
         <div className='flex flex-col items-center'>
@@ -20,7 +19,7 @@ const Weather = ({ data }) => {
       </div>
       
       {/* Bottom */}
-      <div className='bg-black/50 relative p-8 rounded-md'>
+      <div className='bg-sky-400/50 relative p-8 rounded-md'>
         <p className='text-2xl text-center pb-6'>Weather in {data.name}</p>
         <div className='flex justify-between text-center'>
           <WeatherInfo label='Feels Like' value={`${data.main.feels_like.toFixed(0)}°`} />
@@ -28,7 +27,13 @@ const Weather = ({ data }) => {
           <WeatherInfo label='Winds' value={`${data.wind.speed.toFixed(0)} MPH`} />
         </div>
       </div>
+
+      <div>
+        
+      </div>
     </div>
+
+    
   );
 };
 
