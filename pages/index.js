@@ -10,10 +10,14 @@ export default function Home() {
   const [city, setCity] = useState('')
   const [weather, setWeather] = useState({})
   const [loading, setLoading] = useState(false)
+  const [forecast, setForecast] = useState({})
 
   const apiKey = process.env.NEXT_PUBLIC_WEATHER_KEY;
   const geolocationUrl = 'http://api.openweathermap.org/geo/1.0/reverse'
   const weatherUrl = `https://api.openweathermap.org/data/2.5/weather`
+  const forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast'
+
+
   
   useEffect(() => {
     // Fetch weather data for the current location when the component mounts
@@ -37,20 +41,32 @@ export default function Home() {
   };
 
   const getWeatherByCoordinates = async (latitude, longitude) => {
-    setLoading(true)
-
-    
-
+    setLoading(true);
+  
     try {
       const geolocationResponse = await axios.get(`${geolocationUrl}?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`);
       const city = geolocationResponse.data[0].name;
       setCity(city);
       await fetchWeather(city);
+      await fetchForecast(latitude, longitude); // Call the function to fetch the forecast
     } catch (error) {
       console.error('Error fetching geolocation:', error);
       setLoading(false);
     }
-  }
+  };
+  
+  const fetchForecast = async (latitude, longitude) => {
+    try {
+      const forecastResponse = await axios.get(`${forecastUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}`);
+      const forecastData = forecastResponse.data;
+      console.log(forecastResponse.data)
+      setForecast(forecastData); // Set the forecast data in the state
+    } catch (error) {
+      console.error('Error getting forecast:', error);
+    }
+  };
+  
+  
 
   const getWeather = async (e) => {
     e.preventDefault();
@@ -110,7 +126,8 @@ export default function Home() {
       </div>
 
       {/* Weather */}
-      {loading ? <Loading /> : weather.main && <Weather data={weather} />}
+      // In the Home component
+      {loading ? <Loading /> : weather.main && <Weather data={weather} forecast={forecast} />}
     </div>
   );
 }
