@@ -5,7 +5,8 @@
 * Deployment: https://project4-xjsl.vercel.app/
 
 # Api Used:
-https://www.tomorrow.io/
+https://openweathermap.org/current
+https://www.pexels.com/api/
 
 # Technologies Used:
 * React.js, Next.js
