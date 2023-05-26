@@ -9,7 +9,7 @@
 * https://www.pexels.com/api/
 
 # Technologies Used:
-* React.js, Next.js
+* React.js, Next.js, TailwindCSS
 
 # Wireframe
 ![Wireframe](./public/Wireframe.png)
