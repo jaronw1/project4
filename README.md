@@ -17,18 +17,17 @@
 # User Stories
 * As a user I want to be able to check current weather for my area
 * As a user I want to see real-time weather info and forecasting.
-* As a a user I want to see hourly and weekly forecasting with interactive maps.
-* As a user I want to see sunset and sunrise time.
+* As a a user I want to see hourly and weekly forecasting.
 
 # MVP
 * Shows real-time weather info
 * Extended 7 days forecast
-* One-click Celcius to Fahrenheit conversion and vice versa
 * Use Geo-location to find 
 
 # Stretch Goals
 * Work with tailwind or bootstrap top make website look best as possible
 * Website for mobile use
+* One-click Celcius to Fahrenheit conversion and vice versa
 
 # Sprints
 * Day 1: Research as much as possible, play around with Api Data
