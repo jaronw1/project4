@@ -18,7 +18,7 @@ export default function Home() {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('')
 
   const apiKey = process.env.NEXT_PUBLIC_WEATHER_KEY;
-  const geolocationUrl = 'http://api.openweathermap.org/geo/1.0/reverse'
+  const geolocationUrl = 'https://api.openweathermap.org/geo/1.0/reverse'
   const weatherUrl = 'https://api.openweathermap.org/data/2.5/weather'
   const forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast'
   const client = createClient(backgroundKey)
