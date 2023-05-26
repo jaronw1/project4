@@ -2,6 +2,8 @@
 # Real time weather app
 * Weather app that has real time updates
 
+* Deployment: https://project4-xjsl.vercel.app/
+
 # Api Used:
 https://www.tomorrow.io/
 
