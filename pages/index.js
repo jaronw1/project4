@@ -34,7 +34,7 @@ export default function Home() {
     } catch (error) {
       console.error('Error fetching background image:', error);
     }
-  };
+  }
 
   useEffect(() => {
     fetchWeatherByGeolocation()
@@ -44,17 +44,19 @@ export default function Home() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords
-          getWeatherByCoordinates(latitude, longitude)
+          const { latitude, longitude } = position.coords;
+          getWeatherByCoordinates(latitude, longitude);
         },
         (error) => {
-          console.error('Error getting geolocation:', error)
+          console.error('Error getting geolocation:', error);
+
         }
       )
     } else {
-      console.error('Geolocation is not supported by this browser.')
+      console.error('Geolocation is not supported by this browser.');
     }
   }
+  
 
   
 
