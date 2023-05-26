@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 
 const Weather = ({ data, forecast }) => {
-  console.log(forecast.list);
   const dailyTemperatures = Array.isArray(forecast?.list)
     ? forecast.list.filter((item, index) => index % 8 === 0)
     : []
@@ -20,7 +19,7 @@ const Weather = ({ data, forecast }) => {
           />
           <p className='text-2xl'>{data.weather[0].main}</p>
         </div>
-        <p className='text-9xl'>{data.main.temp.toFixed(0)}&#176;</p>
+        <p className='text-8xl'>{data.main.temp.toFixed(0)}&#176;</p>
       </div>
 
       {/* Bottom */}
